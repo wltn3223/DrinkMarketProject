@@ -8,7 +8,13 @@ public class Item {
     private int price;
 
     public Item(String name, int price) {
-        this.serialNum = "Item" + (int)(Math.random()*10000);
+        this.serialNum = "Item" + (int)(Math.random()*1000);
+        this.name = name;
+        this.price = price;
+    }
+
+    public Item(String serialNum, String name, int price) {
+        this.serialNum = serialNum;
         this.name = name;
         this.price = price;
     }

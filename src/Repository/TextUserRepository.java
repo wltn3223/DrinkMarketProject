@@ -32,6 +32,7 @@ public class TextUserRepository implements UserRepository {
         } catch (IOException e) {
 
         }
+        loadUserList();
 
     }
 
@@ -44,9 +45,9 @@ public class TextUserRepository implements UserRepository {
             String[] info = new String[4];
             while ((customerId = br.readLine()) != null) {
                 info[0] = customerId;
-                info[1] = br.readLine().trim();
-                info[2] = br.readLine().trim();
-                info[3] = br.readLine().trim();
+                info[1] = br.readLine();
+                info[2] = br.readLine();
+                info[3] = br.readLine();
                 userDic.put(info[0], new Customer(info[0], info[1], info[2], info[3]));
 
             }

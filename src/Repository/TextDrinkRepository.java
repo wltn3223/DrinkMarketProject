@@ -5,6 +5,7 @@ import user.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextDrinkRepository implements  DrinkRepository{
@@ -14,17 +15,23 @@ public class TextDrinkRepository implements  DrinkRepository{
         try { // If the file does not exist, process the exception.
             FileReader fr = new FileReader("drinkList.txt");
             BufferedReader br = new BufferedReader(fr);
-            String bookNum;
-            String[] info = new String[4];
-            while ((bookNum = br.readLine()) != null) {
-                info[0] = br.readLine().trim();
-                info[1] = br.readLine().trim();
-                info[2] = br.readLine().trim();
-                info[3] = br.readLine().trim();
-                drinkDic.put(bookNum, new Drink(info[0], info[1],Integer.parseInt(info[2]) , Integer.parseInt(info[3])));
+            String serialNum;
+            String[] info = new String[5];
+            while ((serialNum = br.readLine()) != null) {
+                if(serialNum.contains("Item")) {
+                    info[0] = serialNum;
+                    info[1] = br.readLine();
+                    info[2] = br.readLine();
+                    info[3] = br.readLine();
+                    info[4] = br.readLine();
+                    Drink drink = new Drink(info[0],info[1], info[2], Integer.parseInt(info[3]), info[4]);
+                    drinkDic.put(info[0],drink);
+
+                }
+
 
             }
-
+            System.out.println(info[0]+","+info[1]+","+info[2]+","+Integer.parseInt(info[3])+","+info[4]);
             br.close();
             fr.close();
 
@@ -34,7 +41,8 @@ public class TextDrinkRepository implements  DrinkRepository{
     }
 
     @Override
-    public void saveDrink(ArrayList<String> info) {
+    public void saveDrink(String[] info) {
+        Drink drink = new Drink(info[0], info[1],Integer.parseInt(info[2]) , info[3]);
         FileWriter fw;
         try {
             if (new File("list.txt").exists()) {
@@ -44,7 +52,7 @@ public class TextDrinkRepository implements  DrinkRepository{
             }
 
             BufferedWriter bw = new BufferedWriter(fw);
-
+            bw.write(drink.getSerialNum() + "\n");
             for (String data : info) {
                 bw.write(data + "\n");
             }
@@ -54,7 +62,12 @@ public class TextDrinkRepository implements  DrinkRepository{
         } catch (IOException e) {
 
         }
+        loadDrink();
+    }
 
+    @Override
+    public void selectDrink() {
+        drinkDic.values().stream().forEach(s -> System.out.println(s));
     }
 
 

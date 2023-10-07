@@ -1,5 +1,6 @@
 
 
+import Service.AdminService;
 import user.Customer;
 import Service.UserService;
 
@@ -10,16 +11,18 @@ public class Main { // login user
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Appconfig appconfig = new Appconfig();
-        UserService userService =  appconfig.userService();  // User service to use Repository
+        UserService userService = appconfig.userService();  // User service to use Repository
+        AdminService adminService = appconfig.adminService();
 
         Customer customer;  // login user
+        boolean adminmode = false; // login admin
 
 
         ; // load user info in txt
 
         boolean quit = false;
         while (!quit) {
-            System.out.println("메뉴 번호를 선택하세요 1.회원가입 2. 로그인 3. 비밀번호찾기 4. 관리자로그인");
+            System.out.println("메뉴 번호를 선택하세요 1.회원가입 2. 로그인 3. 비밀번호찾기 4. 관리자로그인 ");
 
             int menu = input.nextInt();
 
@@ -39,7 +42,7 @@ public class Main { // login user
                     // login
                     System.out.println("*********************로그인**********************");
                     customer = userService.login();
-                    if(customer != null){
+                    if (customer != null) {
                         quit = true;
                     }
                     break;
@@ -50,26 +53,54 @@ public class Main { // login user
 
                 case 4:
                     System.out.println("*********************관리자로그인**********************");
-
+                    adminmode = adminService.login();
+                    if(!adminmode){
+                        System.out.println("로그인실패");
+                    }else {
+                        quit = adminmode;
+                    }
                     break;
+
             }
 
         }
-        //admin
-        System.out.println("관리자로 로그인하셨습니다");
-        System.out.println("메뉴를 선택하세요");
-        System.out.println("1. 품목추가 ");
 
-
-        // user
-        System.out.println("================================");
-        System.out.println("메뉴를 선택하세요");
-        System.out.println("1. 고객정보, 2. 장바구니 비우기, 내 장바구니 확인,장바구니 품목추가, 장바구니 품목 제거, 장바구니 수량 제거");
-        // print userinfo
+        if (adminmode) {
+            while (true) {
+                input.nextLine();
+                System.out.println("관리자로 로그인하셨습니다");
+                System.out.println("1.음료수목록보기 \t2.음료수추가\t3.종료");
+                System.out.println("메뉴를 선택하세요");
+                int menu = input.nextInt();
+                if (menu > 3 || menu < 1) {
+                    System.out.println("1~3까지의 번호를 선택하세요");
+                    continue;
+                }
+                switch (menu){
+                    case 1:
+                        System.out.println("*********************음료목록**********************");
+                        adminService.printDrinkInfo();
+                        break;
+                    case 2:
+                        System.out.println("*********************음료수추가**********************");
+                        adminService.addDrink();
+                        break;
+                    case 3:
+                        System.out.println("종료합니다");
+                        input.close();
+                        return;
+                }
+            }
+        } else {
+            // user
+            System.out.println("================================");
+            System.out.println("메뉴를 선택하세요");
+            System.out.println("1. 고객정보, 2. 장바구니 비우기, 내 장바구니 확인,장바구니 품목추가, 장바구니 품목 제거, 장바구니 수량 제거");
+            // print userinfo
+        }
 
     }
 
 
-
-
 }
+

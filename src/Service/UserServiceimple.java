@@ -14,12 +14,12 @@ public class UserServiceimple implements  UserService{
 
     public UserServiceimple(UserRepository userRepository) {
         this.userRepository = userRepository;
+
     }
 
     @Override
     public void join( ) {
-
-
+        userRepository.loadUserList();
         String id = null;
         ArrayList<String> info = new ArrayList<>();
 
@@ -80,6 +80,7 @@ public class UserServiceimple implements  UserService{
 
     @Override
     public void findpassword() {
+        userRepository.loadUserList();
         System.out.println("id를 입력하세요");
         String id = input.nextLine();
         if(userRepository.findpassword(id) == null){

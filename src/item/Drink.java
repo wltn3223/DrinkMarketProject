@@ -4,38 +4,27 @@ import java.util.Objects;
 
 public class Drink extends Item{
 
-    private String name;
+    private String  capacity;
     private String kind;
 
-    private int price;
-    private int capacity;
-
-    public Drink(String kind, String name, int price,int capacity) {
+    public Drink(String kind, String name, int price,String capacity) {
         super(name, price);
         this.kind = kind;
         this.capacity = capacity;
     }
 
-
-    public String getName() {
-        return name;
+    public Drink(String serialNum,String kind, String name, int price,String capacity) {
+        super(serialNum, name, price);
+        this.kind = kind;
+        this.capacity = capacity;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public String getNum() {
         return getSerialNum();
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -48,5 +37,10 @@ public class Drink extends Item{
     @Override
     public int hashCode() {
         return Objects.hash(this.getNum());
+    }
+
+    @Override
+    public String toString() {
+        return this.getSerialNum() + "\t" + kind + "\t" + getName() + "\t" + getPrice() + "원\t" + capacity +"\n";
     }
 }
