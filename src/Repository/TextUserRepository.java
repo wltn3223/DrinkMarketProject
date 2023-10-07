@@ -1,4 +1,4 @@
-package userRepository;
+package Repository;
 
 import user.Customer;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class TextUserRepository implements UserRepository {
 
-    private final HashMap<String, Customer> store = new HashMap<>();
+    private final HashMap<String, Customer> userDic = new HashMap<>();
 
 
     @Override
@@ -47,7 +47,7 @@ public class TextUserRepository implements UserRepository {
                 info[1] = br.readLine().trim();
                 info[2] = br.readLine().trim();
                 info[3] = br.readLine().trim();
-                store.put(info[0], new Customer(info[0], info[1], info[2], info[3]));
+                userDic.put(info[0], new Customer(info[0], info[1], info[2], info[3]));
 
             }
 
@@ -61,23 +61,23 @@ public class TextUserRepository implements UserRepository {
 
     @Override
     public Boolean selectId(String id) {
-        if (store.containsKey(id)) {
+        if (userDic.containsKey(id)) {
             return true;
         }
         return false;
     }
     @Override
     public String findpassword(String id) {
-        if (store.containsKey(id)) {
-            return store.get(id).getPassword();
+        if (userDic.containsKey(id)) {
+            return userDic.get(id).getPassword();
         }
         return null;
     }
 
     @Override
     public Customer findCustomer(Customer customer) {
-        if (store.containsValue(customer))
-            return store.get(customer.getId());
+        if (userDic.containsValue(customer))
+            return userDic.get(customer.getId());
         else {
             return null;
         }

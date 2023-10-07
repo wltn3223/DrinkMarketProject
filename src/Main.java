@@ -1,20 +1,16 @@
 
 
 import user.Customer;
-import userRepository.TextUserRepository;
-import userRepository.UserRepository;
 import userService.UserService;
-import userService.UserServiceimple;
 
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main { // login user
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Appconfig appconfig = new Appconfig();
-        UserService userService =  appconfig.userService();  // User service to use userRepository
+        UserService userService =  appconfig.userService();  // User service to use Repository
 
         Customer customer;  // login user
 

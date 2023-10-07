@@ -2,7 +2,7 @@ package userService;
 
 import user.Customer;
 
-import userRepository.UserRepository;
+import Repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Scanner;

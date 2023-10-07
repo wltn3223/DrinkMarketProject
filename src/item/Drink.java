@@ -3,16 +3,22 @@ package item;
 import java.util.Objects;
 
 public class Drink {
+
+    private  static int drinkNum = 0;
+    private String num;
     private String name;
     private String kind;
-    private int capacity;
-    private String brand;
 
-    public Drink(String name, String kind, int capacity, String brand) {
+    private int price;
+    private int capacity;
+
+    public Drink(String name, String kind, int capacity, int price) {
+        this.num = "drink"+ drinkNum++;
         this.name = name;
         this.kind = kind;
         this.capacity = capacity;
-        this.brand = brand;
+        this.price = price;
+
     }
 
     public String getName() {
@@ -39,12 +45,12 @@ public class Drink {
         this.capacity = capacity;
     }
 
-    public String getBrand() {
-        return brand;
+    public int getPrice() {
+        return price;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
