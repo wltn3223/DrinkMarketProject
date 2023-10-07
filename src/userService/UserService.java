@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public interface UserService {
 
-    ArrayList<String> join(ArrayList<String> userinfo); // 회원가입
+    void join(); // 회원가입
     Customer login();
-    String findpassword(String id);
+    void findpassword();
 
 }

@@ -1,26 +1,25 @@
 package userService;
 
 import user.Customer;
-import userRepository.TextUserRepository;
+
 import userRepository.UserRepository;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserServiceimple implements  UserService{
-    static Scanner input = new Scanner(System.in);
-   final UserRepository userRepository;
+    Scanner input = new Scanner(System.in);
+   private final UserRepository userRepository;
+
 
     public UserServiceimple(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public ArrayList<String> join( ArrayList<String> userinfo) {
+    public void join( ) {
+
+
         String id = null;
         ArrayList<String> info = new ArrayList<>();
 
@@ -28,7 +27,7 @@ public class UserServiceimple implements  UserService{
             System.out.println("가입하실 아이디를 입력하세요");
             id = input.nextLine().trim();
 
-            if (userRepository.findId(id)) {
+            if (userRepository.selectId(id)) {
                 System.out.println("중복되는 아이디입니다.\n 다시입력해주세요.");
                 continue;
             }
@@ -42,11 +41,11 @@ public class UserServiceimple implements  UserService{
         info.add(input.nextLine().trim());
         System.out.println("주소를 입력하세요");
         info.add(input.nextLine().trim());
-        System.out.println("스마트폰 번호를 입력하세요");
-        info.add(input.nextLine().trim());
+
+        userRepository.save(info);
         System.out.println("회원가입이 정상적으로 완료되었습니다.");
 
-        return info;
+
 
 
     }
@@ -54,10 +53,11 @@ public class UserServiceimple implements  UserService{
     @Override
 
     public Customer login() {
+        userRepository.loadUserList();
         Customer customer = null;
         System.out.println("아이디를 입력하세요.");
         String id = input.nextLine().trim();
-        if(userRepository.findId(id)){
+        if(userRepository.selectId(id)){
             System.out.println("비밀 번호를 입력하세요");
             String password = input.nextLine().trim();
             customer = userRepository.findCustomer(new Customer(id,password));
@@ -79,7 +79,16 @@ public class UserServiceimple implements  UserService{
 
 
     @Override
-    public String findpassword(String id) {
-        return userRepository.findpassword(id);
+    public void findpassword() {
+        System.out.println("id를 입력하세요");
+        String id = input.nextLine();
+        if(userRepository.findpassword(id) == null){
+            System.out.println("없는 아이디입니다.");
+
+        }else {
+            System.out.println("회원님의 아이디는 = " + userRepository.findpassword(id) + "입니다.");
+        }
+
+
     }
 }
