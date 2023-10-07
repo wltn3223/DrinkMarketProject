@@ -1,6 +1,6 @@
 import Repository.TextUserRepository;
-import userService.UserService;
-import userService.UserServiceimple;
+import Service.UserService;
+import Service.UserServiceimple;
 
 public class Appconfig {
     public UserService userService(){

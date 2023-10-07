@@ -1,7 +1,7 @@
 
 
 import user.Customer;
-import userService.UserService;
+import Service.UserService;
 
 
 import java.util.Scanner;

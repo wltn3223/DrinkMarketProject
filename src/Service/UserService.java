@@ -1,4 +1,4 @@
-package userService;
+package Service;
 
 import user.Customer;
 

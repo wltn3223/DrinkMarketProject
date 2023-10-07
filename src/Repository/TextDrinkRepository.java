@@ -12,7 +12,7 @@ public class TextDrinkRepository implements  DrinkRepository{
     @Override
     public void loadDrink() {
         try { // If the file does not exist, process the exception.
-            FileReader fr = new FileReader("drinklist.txt");
+            FileReader fr = new FileReader("drinkList.txt");
             BufferedReader br = new BufferedReader(fr);
             String bookNum;
             String[] info = new String[4];
@@ -34,13 +34,13 @@ public class TextDrinkRepository implements  DrinkRepository{
     }
 
     @Override
-    public void addDrink(ArrayList<String> info) {
+    public void saveDrink(ArrayList<String> info) {
         FileWriter fw;
         try {
             if (new File("list.txt").exists()) {
-                fw = new FileWriter("drinklist.txt.txt", true);
+                fw = new FileWriter("drinkList.txt", true);
             } else {
-                fw = new FileWriter("drinklist.txt.txt");
+                fw = new FileWriter("drinkList.txt");
             }
 
             BufferedWriter bw = new BufferedWriter(fw);
