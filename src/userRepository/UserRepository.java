@@ -2,9 +2,11 @@ package userRepository;
 
 import user.Customer;
 
+import java.util.ArrayList;
+
 
 public interface UserRepository {
-    void save(Customer customer);
+    void save(ArrayList<String> info);
     void loadUserList();
 
     Boolean findId(String id);

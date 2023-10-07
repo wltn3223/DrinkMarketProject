@@ -3,9 +3,8 @@ package userRepository;
 import user.Customer;
 import user.User;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TextUserRepository implements UserRepository {
@@ -14,8 +13,27 @@ public class TextUserRepository implements UserRepository {
 
 
     @Override
-    public void save(Customer customer) {
-        store.put(customer.getId(), customer);
+    public void save(ArrayList<String> info) {
+        FileWriter fw;
+        try {
+            if (new File("list.txt").exists()) {
+                fw = new FileWriter("list.txt", true);
+            } else {
+                fw = new FileWriter("list.txt");
+            }
+
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (String data : info) {
+                bw.write(data + "\n");
+            }
+            bw.close();
+            fw.close();
+
+        } catch (IOException e) {
+
+        }
+
     }
 
     @Override

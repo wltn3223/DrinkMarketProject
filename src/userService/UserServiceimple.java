@@ -13,10 +13,14 @@ import java.util.Scanner;
 
 public class UserServiceimple implements  UserService{
     static Scanner input = new Scanner(System.in);
-    static  final UserRepository userRepository = new TextUserRepository();
+   final UserRepository userRepository;
+
+    public UserServiceimple(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
-    public void join() {
-        FileWriter fw;
+    public ArrayList<String> join( ArrayList<String> userinfo) {
         String id = null;
         ArrayList<String> info = new ArrayList<>();
 
@@ -40,25 +44,10 @@ public class UserServiceimple implements  UserService{
         info.add(input.nextLine().trim());
         System.out.println("스마트폰 번호를 입력하세요");
         info.add(input.nextLine().trim());
-        try {
-            if (new File("list.txt").exists()) {
-                fw = new FileWriter("list.txt", true);
-            } else {
-                fw = new FileWriter("list.txt");
-            }
-
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            for (String data : info) {
-                bw.write(data + "\n");
-            }
-            bw.close();
-            fw.close();
-
-        } catch (IOException e) {
-
-        }
         System.out.println("회원가입이 정상적으로 완료되었습니다.");
+
+        return info;
+
 
     }
 
@@ -72,6 +61,10 @@ public class UserServiceimple implements  UserService{
             System.out.println("비밀 번호를 입력하세요");
             String password = input.nextLine().trim();
             customer = userRepository.findCustomer(new Customer(id,password));
+        }
+        else{
+            System.out.println("없는 id입니다.");
+
         }
         if (customer == null) {
             System.out.println("로그인 실패");

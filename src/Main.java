@@ -12,9 +12,12 @@ import java.util.Scanner;
 public class Main { // login user
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Customer customer;  // login user
+        Appconfig appconfig = new Appconfig();
         UserRepository userRepository = new TextUserRepository(); // User repository
-        UserService userService = new UserServiceimple();   // User service
+        UserService userService =  appconfig.userService();  // User service
+
+        Customer customer;  // login user
+
 
         userRepository.loadUserList();
 
@@ -35,7 +38,7 @@ public class Main { // login user
                     System.out.println("*********************회원가입**********************");
 
 
-                    userService.join();
+
                     userRepository.loadUserList();
                     break;
                 case 2:
@@ -72,19 +75,5 @@ public class Main { // login user
 
 
 
-
-
-//    public static boolean loginAdmin() {
-//        input.nextLine();
-//        System.out.println("관리자로그인");
-//        System.out.println("아이디를입력하세요");
-//        String adminId = input.nextLine().trim();
-//        System.out.println("비밀번호를입력하세요");
-//        String adminPassword = input.nextLine().trim();
-//        Admin admin = new Admin();
-//        boolean match = adminId.equals(admin.getId()) && adminPassword.equals(admin.getPassword());
-//        System.out.println(match == true ? "관리자로그인성공" : "관리자로그인실패");
-//        return match;
-//    }
 
 }

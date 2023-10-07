@@ -4,9 +4,11 @@ import user.Customer;
 import userRepository.TextUserRepository;
 import userRepository.UserRepository;
 
+import java.util.ArrayList;
+
 public interface UserService {
 
-    void join(); // 회원가입
+    ArrayList<String> join(ArrayList<String> userinfo); // 회원가입
     Customer login();
     String findpassword(String id);
 
