@@ -61,7 +61,7 @@ public class TextUserRepository implements UserRepository {
     }
 
     @Override
-    public Boolean selectId(String id) {
+    public Boolean isId(String id) {
         if (userDic.containsKey(id)) {
             return true;
         }

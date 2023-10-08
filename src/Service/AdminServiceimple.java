@@ -3,16 +3,19 @@ package Service;
 import Repository.DrinkRepository;
 import user.Admin;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class AdminServiceimple implements AdminService{
     private final DrinkRepository drinkRepository;
-    private static  Scanner scanner = new Scanner(System.in);
+    private BufferedReader br;
 
 
     public AdminServiceimple(DrinkRepository drinkRepository) {
         this.drinkRepository = drinkRepository;
+        br = new BufferedReader(new InputStreamReader(System.in));
+
     }
     @Override
     public boolean login() {
@@ -45,7 +48,7 @@ public class AdminServiceimple implements AdminService{
     public void printDrinkInfo(){
         drinkRepository.loadDrink();
         System.out.println("시리얼 번호" +"\t" + "종류" +"\t" + "이름" +"\t" + "가격" +"\t" + "용량");
-        drinkRepository.selectDrink();
+        drinkRepository.lookDrinkList();
     }
 
 

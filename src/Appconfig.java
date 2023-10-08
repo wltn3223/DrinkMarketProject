@@ -6,6 +6,8 @@ import Service.AdminService;
 import Service.AdminServiceimple;
 import Service.UserService;
 import Service.UserServiceimple;
+import cart.CartServicImple;
+import cart.CartService;
 
 public class Appconfig {
     public UserService userService(){
@@ -13,6 +15,9 @@ public class Appconfig {
     }
     public AdminService adminService(){
         return  new AdminServiceimple(drinkRepository());
+    }
+    public CartService cartService(){
+        return  new CartServicImple(drinkRepository());
     }
 
     private DrinkRepository drinkRepository() {

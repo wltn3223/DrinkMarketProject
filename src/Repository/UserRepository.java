@@ -9,7 +9,7 @@ public interface UserRepository {
     void save(ArrayList<String> info);
     void loadUserList();
 
-    Boolean selectId(String id);
+    Boolean isId(String id);
     public String findpassword(String id);
     Customer findCustomer(Customer customer);
 

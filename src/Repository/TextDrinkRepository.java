@@ -1,11 +1,7 @@
 package Repository;
-
 import item.Drink;
-import user.Customer;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextDrinkRepository implements  DrinkRepository{
@@ -66,9 +62,15 @@ public class TextDrinkRepository implements  DrinkRepository{
     }
 
     @Override
-    public void selectDrink() {
+    public void lookDrinkList() {
         drinkDic.values().stream().forEach(s -> System.out.println(s));
     }
+
+    @Override
+    public boolean IsDrink(String serialNum) {
+        return drinkDic.containsKey(serialNum);
+    }
+
 
 
 }
