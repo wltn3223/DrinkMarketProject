@@ -32,8 +32,8 @@ public class Main { // login user
                 case -1:
                     continue;
                 case 0:
-                    quit = true;
-                    break;
+                    System.out.println("시스템을 종료합니다.");
+                   return;
 
                 case 1:
                     System.out.println("*********************회원가입**********************");
@@ -68,7 +68,7 @@ public class Main { // login user
 
         if (adminmode) {
             quit = false;
-            while (quit) {
+            while (!quit) {
                 System.out.println("관리자로 로그인하셨습니다");
                 int menu = adminService.choiceMenu();
                 if (menu > 3 || (menu < -1)) {
@@ -80,6 +80,7 @@ public class Main { // login user
                         continue;
                     case 0:
                         quit = true;
+                        break;
                     case 1:
                         System.out.println("*********************음료목록**********************");
                         adminService.printDrinkInfo();
@@ -90,6 +91,7 @@ public class Main { // login user
                         break;
                     case 3:
                         quit = true;
+                        break;
                 }
             }
         } else {

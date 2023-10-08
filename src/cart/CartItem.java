@@ -20,18 +20,19 @@ public class CartItem {
         return drink;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
     public void  addQuantity(int quantity){
         this.quantity += quantity;
         updateTotalprince();
     }
     public void  subtractQuantity(int quantity){
-        if(this.quantity >= quantity) {
+
             this.quantity -= quantity;
             updateTotalprince();
-        }else {
-            System.out.println("올바른 수량을 입력해주세요");
-        }
+
     }
 
     public int getTotalprince() {
