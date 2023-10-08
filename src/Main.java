@@ -68,11 +68,8 @@ public class Main { // login user
         if (adminmode) {
             quit = false;
             while (quit) {
-                input.nextLine();
                 System.out.println("관리자로 로그인하셨습니다");
-                System.out.println("1.음료수목록보기 \t2.음료수추가\t3.종료");
-                System.out.println("메뉴를 선택하세요");
-                int menu = input.nextInt();
+                int menu = adminService.choiceMenu();
                 if (menu > 3 || menu < 1) {
                     System.out.println("1~3까지의 번호를 선택하세요");
                     continue;

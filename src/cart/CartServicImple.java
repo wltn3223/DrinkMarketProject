@@ -4,6 +4,8 @@ import Exceptions.AllException;
 import Repository.DrinkRepository;
 import item.Drink;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -12,9 +14,12 @@ public class CartServicImple implements  CartService{
 
     ArrayList<CartItem> cartList = new ArrayList<>();
     DrinkRepository drinkRepository;
+    private BufferedReader br;
 
     public CartServicImple(DrinkRepository drinkRepository) {
+
         this.drinkRepository = drinkRepository;
+        br =  new BufferedReader(new InputStreamReader(System.in));
     }
     public void clearCart() {
         cartList.clear();
