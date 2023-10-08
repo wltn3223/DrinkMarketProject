@@ -95,7 +95,7 @@ public class Main { // login user
             // user
             System.out.println("================================");
             System.out.println("메뉴를 선택하세요");
-            System.out.println("1. 고객정보, 2. 장바구니 비우기, 내 장바구니 확인,장바구니 품목추가, 장바구니 품목 제거, 장바구니 수량 제거");
+            System.out.println("1. 고객정보확인, 2. 장바구니 비우기, 내 장바구니 확인,장바구니 품목추가, 장바구니 품목 제거, 장바구니 수량 제거");
             // print userinfo
         }
 
