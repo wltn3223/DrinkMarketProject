@@ -27,7 +27,12 @@ public class UserServiceimple implements UserService {
     public int choiceMenu() {
         userRepository.loadUserList();
         System.out.println("===================================================");
-        System.out.println("메뉴 선택하세요\n1.회원가입\n2.로그인\n3.비밀번호찾기\n4.관리자로그인");
+        System.out.println("메뉴를 선택하세요");
+        System.out.println("""
+                1.회원가입
+                2.로그인
+                3.비밀번호찾기
+                """);
         int menu = 0;
         try {
             menu = Integer.parseInt(br.readLine());

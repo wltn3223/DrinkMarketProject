@@ -3,9 +3,9 @@ package Service;
 
 
 public interface AdminService {
-    public int choiceMenu();
+    int choiceMenu();
     void addDrink();
-    void printDrinkInfo();
+    void printDrinkList();
     boolean login();
 
 }

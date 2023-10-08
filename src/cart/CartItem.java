@@ -58,10 +58,9 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return "CartItem{" +
-                "이름=" + drink +
-                ", quantity=" + quantity +
-                ", totalprince=" + totalprince +
-                '}';
+        return drink.getId() +
+                "\t\t\t| " + drink.getName() +
+                "\t\t| " + quantity +
+                "\t\t\t\t| "+ totalprince;
     }
 }

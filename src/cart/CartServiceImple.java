@@ -58,17 +58,11 @@ public class CartServiceImple implements CartService {
             System.out.println("올바른 형식으로 입력해주세요.");
             return;
         }
-        if(isCartList(id).isPresent()){
-            CartItem cartItem = isCartList(id).get();
-            cartItem.addQuantity(1);
-            System.out.println("이미 존재하는 상품입니다. 수량을 하나 추가합니다.");
-        }else {
-            drink = drinkRepository.IsDrink(id);
-            if (drink != null) {
-                cartList.add(new CartItem(drink));
-            } else {
-                System.out.println("잘못된ID를 입력하셨습니다.");
-            }
+        drink = drinkRepository.IsDrink(id);
+        if (drink != null) {
+            cartList.add(new CartItem(drink));
+        } else {
+            System.out.println("잘못된ID를 입력하셨습니다.");
         }
 
 
@@ -100,7 +94,31 @@ public class CartServiceImple implements CartService {
     @Override
     public void removeItem() {
         String id;
-        System.out.println("삭제할 품목의 Id를 입력해주세요");
+        int num;
+        System.out.println("수량을 감소시킬 음료의 ID를 입력해주세요");
+        try {
+            id = br.readLine();
+            if (isCartList(id).isPresent()) {
+                CartItem cartitem = isCartList(id).get();
+                System.out.println("감소시킬 수량(개수)을 입력해주세요");
+                num = Integer.parseInt(br.readLine());
+                cartitem.subtractQuantity(num);
+                System.out.println("수량이 감소되었습니다.");
+            } else {
+                System.out.println("없는 id입니다.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("올바른 형식으로 입력해주세요.");
+        }
+
+
+    }
+
+    @Override
+    public void subtractItem() {
+        String id;
+        System.out.println("감소시킬 음료의 수량을 입력해주세요");
         try {
             id = br.readLine();
             if (isCartList(id).isPresent()) {
@@ -114,34 +132,6 @@ public class CartServiceImple implements CartService {
             System.out.println("올바른 형식으로 입력해주세요.");
         }
 
-    }
-
-    @Override
-    public void subtractItem() {
-        String id;
-        int num;
-        System.out.println("수량을 감소시킬 음료의 ID를 입력해주세요");
-        try {
-            id = br.readLine();
-            if (isCartList(id).isPresent()) {
-                CartItem cartitem = isCartList(id).get();
-                System.out.println("감소시킬 수량(개수)을 입력해주세요");
-                num = Integer.parseInt(br.readLine());
-                if(num<cartitem.getQuantity()) {
-                    cartitem.subtractQuantity(num);
-                    System.out.println("수량이 감소되었습니다.");
-                }
-                else {
-                    System.out.println("기존 수량보다 더높은 수량을 입력하셨습니다. 항목을 삭제합니다");
-                    cartList.remove(cartitem);
-                }
-            } else {
-                System.out.println("없는 id입니다.");
-            }
-
-        } catch (Exception e) {
-            System.out.println("올바른 형식으로 입력해주세요.");
-        }
 
     }
 

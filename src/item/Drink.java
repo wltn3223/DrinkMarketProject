@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Drink extends Item{
 
-    private String  capacity;
-    private String kind;
+    private final String capacity;
+    private final String kind;
 
     public Drink(String kind, String name, int price,String capacity) {
         super(name, price);
@@ -16,9 +16,16 @@ public class Drink extends Item{
     public Drink(String iD,String kind, String name, int price,String capacity) {
         super(iD, name, price);
         this.kind = kind;
-        this.capacity = capacity;
+        this.capacity = capacity ;
     }
 
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public String getKind() {
+        return kind;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -35,6 +42,6 @@ public class Drink extends Item{
 
     @Override
     public String toString() {
-        return this.getId() + "\t" + kind + "\t" + getName() + "\t" + getPrice() + "원\t" + capacity +"\n";
+        return this.getId() + "\t\t| " + kind + "\t\t| " + getName() + "\t\t| " + getPrice() + "원\t\t| " + capacity;
     }
 }

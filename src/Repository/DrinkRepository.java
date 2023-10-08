@@ -4,7 +4,7 @@ import item.Drink;
 
 public interface DrinkRepository {
     void loadDrink();
-    void saveDrink(String[] info);
+    void saveDrink(Drink drink);
 
    void printDrinkList();
 

@@ -38,8 +38,7 @@ public class TextDrinkRepository implements DrinkRepository {
     }
 
     @Override
-    public void saveDrink(String[] info) {
-        Drink drink = new Drink(info[0], info[1], Integer.parseInt(info[2]), info[3]);
+    public void saveDrink(Drink drink) {
         FileWriter fw;
         try {
             if (new File("list.txt").exists()) {
@@ -50,9 +49,11 @@ public class TextDrinkRepository implements DrinkRepository {
 
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(drink.getId() + "\n");
-            for (String data : info) {
-                bw.write(data + "\n");
-            }
+            bw.write(drink.getKind() + "\n");
+            bw.write(drink.getName() + "\n");
+            bw.write(drink.getPrice() + "\n");
+            bw.write(drink.getCapacity() + "\n");
+
             bw.close();
             fw.close();
 
@@ -64,8 +65,11 @@ public class TextDrinkRepository implements DrinkRepository {
 
     @Override
     public void printDrinkList() {
-        System.out.println("ID\t종류\t이름\t가격\t용량");
-        drinkDic.values().stream().forEach(System.out::println);
+        System.out.println("ID\t\t\t| 종류\t\t\t| 이름\t\t\t\t| 가격\t\t\t| 용량");
+        drinkDic.values().stream().forEach(
+                drink -> System.out.printf("%-10s  %-10s  %-20s %-10s %-10s\n"
+                ,drink.getId(),drink.getKind(),drink.getName(),drink.getPrice(),drink.getCapacity())
+        );
     }
 
     @Override
