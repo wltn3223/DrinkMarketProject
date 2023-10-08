@@ -5,7 +5,6 @@ import user.Customer;
 import Repository.UserRepository;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -26,20 +25,22 @@ public class UserServiceimple implements UserService {
 
     @Override
     public int choiceMenu() {
-        System.out.println("메뉴 선택하세요\n1.회원가입\n 2. 로그인\n 3. 비밀번호찾기\n 4. 관리자로그인");
+        userRepository.loadUserList();
+        System.out.println("===================================================");
+        System.out.println("메뉴 선택하세요\n1.회원가입\n2.로그인\n3.비밀번호찾기\n4.관리자로그인");
         int menu = 0;
         try {
             menu = Integer.parseInt(br.readLine());
         } catch (Exception e) {
-            System.out.println("똑바로 입력해주세요");
+            System.out.println("올바른 형식으로 입력해주세요");
+            return -1;
         }
         return menu;
     }
 
     @Override
     public void join() {
-        userRepository.loadUserList();
-        String id = null;
+        String id;
         ArrayList<String> info = new ArrayList<>();
 
         while (true) {
@@ -58,7 +59,7 @@ public class UserServiceimple implements UserService {
                 System.out.println("주소를 입력하세요");
                 info.add(br.readLine().trim());
             } catch (Exception e) {
-                System.out.println("똑바로 입력해주세요");
+                System.out.println("올바른 형식으로 입력해주세요");
                 return;
             }
             break;
@@ -74,10 +75,9 @@ public class UserServiceimple implements UserService {
     @Override
 
     public Customer login() {
-        userRepository.loadUserList();
         Customer customer = null;
-        String id = "";
-        String password = "";
+        String id;
+        String password;
         try {
             System.out.println("아이디를 입력하세요.");
             id = br.readLine().trim();
@@ -87,13 +87,14 @@ public class UserServiceimple implements UserService {
                 customer = userRepository.findCustomer(new Customer(id, password));
             } else {
                 System.out.println("없는 id입니다.");
+                return null;
 
             }
         } catch (Exception e) {
-            System.out.println("똑바로 입력해주세요");
+            System.out.println("올바른 형식으로 입력해주세요");
         }
         if (customer == null) {
-            System.out.println("로그인 실패");
+            System.out.println("비밀번호가 틀렸습니다.");
             return null;
         } else {
             System.out.println("로그인 성공");
@@ -105,7 +106,6 @@ public class UserServiceimple implements UserService {
 
     @Override
     public void findpassword() {
-        userRepository.loadUserList();
         System.out.println("id를 입력하세요");
         String id = null;
         try {
@@ -122,4 +122,5 @@ public class UserServiceimple implements UserService {
 
 
     }
+
 }

@@ -1,16 +1,16 @@
 package cart;
 
 
-import Exceptions.AllException;
 
 public interface CartService {
-
+    int choiceMenu();
     void clearCart();
     void printCart();
-    void addItem(String serialNum);
-    void removeItem(String serialNum) throws AllException;
+    void addItem();
+    public void addQuantity();
+    void removeItem();
 
-    void subtractItem(String serialNum, int quantity) throws AllException;
+    void subtractItem();
 
 
 }

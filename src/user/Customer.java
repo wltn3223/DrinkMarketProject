@@ -54,8 +54,8 @@ public class Customer extends User {
 	public String toString() {
 		return "ID= " + this.getId() + "\n"
 				+"비밀번호= " + this.getPassword() + "\n"
-				+ "이름=" + name + "\n"
-				+ "주소=" + address + "\n";
+				+ "이름= " + name + "\n"
+				+ "주소= " + address + "\n";
 				
 	}
 

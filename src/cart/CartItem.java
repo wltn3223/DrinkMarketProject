@@ -13,6 +13,7 @@ public class CartItem {
     public CartItem(Drink drink) {
         this.drink = drink;
         this.quantity = 1;
+        updateTotalprince();
     }
 
     public Drink getDrink() {
@@ -20,22 +21,24 @@ public class CartItem {
     }
 
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
     public void  addQuantity(int quantity){
         this.quantity += quantity;
+        updateTotalprince();
     }
     public void  subtractQuantity(int quantity){
-        this.quantity -= quantity;
+        if(this.quantity >= quantity) {
+            this.quantity -= quantity;
+            updateTotalprince();
+        }else {
+            System.out.println("올바른 수량을 입력해주세요");
+        }
     }
 
     public int getTotalprince() {
         return this.quantity * this.getDrink().getPrice();
+    }
+    public void updateTotalprince() {
+        this.totalprince = this.quantity * this.getDrink().getPrice();
     }
 
 

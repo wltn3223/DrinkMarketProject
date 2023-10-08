@@ -13,16 +13,10 @@ public class Drink extends Item{
         this.capacity = capacity;
     }
 
-    public Drink(String serialNum,String kind, String name, int price,String capacity) {
-        super(serialNum, name, price);
+    public Drink(String iD,String kind, String name, int price,String capacity) {
+        super(iD, name, price);
         this.kind = kind;
         this.capacity = capacity;
-    }
-
-
-
-    public String getNum() {
-        return getSerialNum();
     }
 
 
@@ -31,16 +25,16 @@ public class Drink extends Item{
         if(!(obj instanceof Drink)){
             return false;
         }
-        return  ((Drink)obj).getNum().equals(this.getNum());
+        return  ((Drink)obj).getId().equals(this.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getNum());
+        return Objects.hash(this.getId());
     }
 
     @Override
     public String toString() {
-        return this.getSerialNum() + "\t" + kind + "\t" + getName() + "\t" + getPrice() + "원\t" + capacity +"\n";
+        return this.getId() + "\t" + kind + "\t" + getName() + "\t" + getPrice() + "원\t" + capacity +"\n";
     }
 }

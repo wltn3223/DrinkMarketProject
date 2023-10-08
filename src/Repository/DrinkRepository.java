@@ -1,10 +1,12 @@
 package Repository;
 
+import item.Drink;
+
 public interface DrinkRepository {
     void loadDrink();
     void saveDrink(String[] info);
 
-   void lookDrinkList();
+   void printDrinkList();
 
-   boolean IsDrink(String serialNum);
+   Drink IsDrink(String serialNum);
 }

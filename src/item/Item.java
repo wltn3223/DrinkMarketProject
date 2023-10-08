@@ -3,24 +3,24 @@ package item;
 import java.util.Objects;
 
 public class Item {
-    private String serialNum;
+    private String iD;
     private String name;
     private int price;
 
     public Item(String name, int price) {
-        this.serialNum = "Item" + (int)(Math.random()*1000);
+        this.iD = "Item" + (int)(Math.random()*1000);
         this.name = name;
         this.price = price;
     }
 
     public Item(String serialNum, String name, int price) {
-        this.serialNum = serialNum;
+        this.iD = serialNum;
         this.name = name;
         this.price = price;
     }
 
-    public String getSerialNum() {
-        return serialNum;
+    public String getId() {
+        return iD;
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(serialNum, item.serialNum);
+        return Objects.equals(iD, item.iD);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(serialNum);
+        return Objects.hash(iD);
     }
 }
