@@ -7,7 +7,8 @@ import Service.UserService;
 
 public class Main { // login user
     public static void main(String[] args) {
-        Appconfig appconfig = new Appconfig();
+        Appconfig appconfig = new Appconfig(); // 모든 서비스 생성 관리
+        // appconfig는 서비스들이 어떤 저장소를 이용할지 결정 (기획자역할)
         UserService userService = appconfig.userService();  // 유저가 이용하는 서비스(회원가입, 로그인, 비밀번호찾기)의 기능을 가진 객체
         AdminService adminService = appconfig.adminService(); // 관리자가 이용하는 서비스(음료 목록 보기, 음료 목록 추가)
         CartService cartService = appconfig.cartService();
