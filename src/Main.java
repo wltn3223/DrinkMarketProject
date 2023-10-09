@@ -8,53 +8,50 @@ import Service.UserService;
 public class Main { // login user
     public static void main(String[] args) {
         Appconfig appconfig = new Appconfig();
-        UserService userService = appconfig.userService();  // User service to use Repository
-        AdminService adminService = appconfig.adminService();
+        UserService userService = appconfig.userService();  // 유저가 이용하는 서비스(회원가입, 로그인, 비밀번호찾기)의 기능을 가진 객체
+        AdminService adminService = appconfig.adminService(); // 관리자가 이용하는 서비스(음료 목록 보기, 음료 목록 추가)
         CartService cartService = appconfig.cartService();
 
 
-        Customer customer = null;  // login user
-        boolean adminmode = false; // login admin
+        Customer customer = null;  // 현재 로그인한 구매자
+        boolean adminmode = false; // 관리자의 로그인 여부 구분
 
 
-        // load user info in txt
 
-        boolean quit = false;
+        boolean quit = false;  // 각 서비스 이용 중단 여부
         while (!quit) {
 
-            int menu = userService.choiceMenu();
+            int menu = userService.choiceMenu(); // 유저가 메뉴 번호를 선택해 UserService 이용
 
-            if (menu > 4 || (menu < -1)) {
-                System.out.println("0~4까지의 번호를 선택하세요");
+            if (menu > 4 || (menu < 0)) {
+                System.out.println("0~4까지의 번호를 선택하세요"); // 없는 메뉴를 누를시 재반복
                 continue;
             }
             switch (menu) {
-                case -1:
-                    continue;
                 case 0:
-                    quit = true;
-                    break;
+                    System.out.println("프로그램을 종료합니다"); // 0 입력 시 프로그램 종료
+                    return;
 
                 case 1:
                     System.out.println("===================================================");
-                    userService.join();
+                    userService.join(); // 회원가입 기능
                     break;
                 case 2:
                     // login
                     System.out.println("===================================================");
-                    customer = userService.login();
+                    customer = userService.login(); // 로그인 기능 로그인 성공시 Customer 인스턴스반환 실패시 null반환
                     if (customer != null) {
-                        quit = true;
+                        quit = true; // 로그인 성공시 반복문 탈출
                     }
                     break;
                 case 3:
                     System.out.println("===================================================");
-                    userService.findpassword();
+                    userService.findpassword(); // 비밀번호찾기
                     break;
 
                 case 4:
                     System.out.println("===================================================");
-                    adminmode = adminService.login();
+                    adminmode = adminService.login(); // 관리자 로그인 관리자 로그인 성공시 adminmode로 전환
                     if (!adminmode) {
                         System.out.println("로그인실패");
                     } else {
@@ -71,13 +68,11 @@ public class Main { // login user
             while (!quit) {
                 System.out.println("관리자로 로그인하셨습니다");
                 int menu = adminService.choiceMenu();
-                if (menu > 2 || (menu < -1)) {
+                if (menu > 2 || (menu < 0)) {
                     System.out.println("0~2까지의 번호를 선택하세요");
                     continue;
                 }
                 switch (menu) {
-                    case -1:
-                        continue;
                     case 0:
                         quit = true;
                     case 1:
@@ -96,14 +91,11 @@ public class Main { // login user
             while (!quit) {
                 int menu = cartService.choiceMenu();
 
-                if (menu > 8 || (menu < -1)) {
+                if (menu > 8 || (menu < 0)) {
                     System.out.println("0~8까지의 번호를 선택하세요");
                     continue;
                 }
                 switch (menu) {
-                    case -1:
-                        continue;
-
                     case 0:
                         quit = true;
                         break;

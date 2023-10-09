@@ -24,7 +24,7 @@ public class Customer extends User {
 
         
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) {  // 비밀번호와 id가 같아야 같은 인스턴스로 판단
     	Customer customer;
     	if(!(obj instanceof Customer)){
     		return false;

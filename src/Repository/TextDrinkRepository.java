@@ -13,11 +13,11 @@ public class TextDrinkRepository implements DrinkRepository {
         try { // If the file does not exist, process the exception.
             FileReader fr = new FileReader("drinkList.txt");
             BufferedReader br = new BufferedReader(fr);
-            String serialNum;
+            String drinkId;
             String[] info = new String[5];
-            while ((serialNum = br.readLine()) != null) {
-                if (serialNum.contains("Item")) {
-                    info[0] = serialNum;
+            while ((drinkId = br.readLine()) != null) {
+                if (drinkId.contains("Item")) {
+                    info[0] = drinkId;
                     info[1] = br.readLine();
                     info[2] = br.readLine();
                     info[3] = br.readLine();
