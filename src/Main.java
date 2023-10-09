@@ -36,24 +36,24 @@ public class Main { // login user
                     break;
 
                 case 1:
-                    System.out.println("*********************회원가입**********************");
+                    System.out.println("===================================================");
                     userService.join();
                     break;
                 case 2:
                     // login
-                    System.out.println("*********************로그인**********************");
+                    System.out.println("===================================================");
                     customer = userService.login();
                     if (customer != null) {
                         quit = true;
                     }
                     break;
                 case 3:
-                    System.out.println("*********************비밀번호찾기**********************");
+                    System.out.println("===================================================");
                     userService.findpassword();
                     break;
 
                 case 4:
-                    System.out.println("*********************관리자로그인**********************");
+                    System.out.println("===================================================");
                     adminmode = adminService.login();
                     if (!adminmode) {
                         System.out.println("로그인실패");
@@ -81,11 +81,11 @@ public class Main { // login user
                     case 0:
                         quit = true;
                     case 1:
-                        System.out.println("*********************음료목록**********************");
+                        System.out.println("===================================================");
                         adminService.printDrinkList();
                         break;
                     case 2:
-                        System.out.println("*********************음료수추가**********************");
+                        System.out.println("===================================================");
                         adminService.addDrink();
                         break;
                 }
@@ -109,36 +109,37 @@ public class Main { // login user
                         break;
 
                     case 1:
-                        System.out.println("*********************고객정보 확인**********************");
+                        System.out.println("===================================================");
+                        System.out.println("고객정보");
                         System.out.println(customer);
                         break;
                     case 2:
-                        System.out.println("*********************내 장바구니 확인**********************");
+                        System.out.println("===================================================");
                         cartService.printCart();
                         break;
                     case 3:
-                        System.out.println("*********************장바구니 품목추가**********************");
+                        System.out.println("===================================================");
                         cartService.addItem();
                         break;
 
                     case 4:
-                        System.out.println("*********************장바구니 품목 수량추가**********************");
+                        System.out.println("===================================================");
                         cartService.addQuantity();
                         break;
                     case 5:
-                        System.out.println("*********************장바구니 품목 제거**********************");
+                        System.out.println("===================================================");
                         cartService.removeItem();
                         break;
                     case 6:
-                        System.out.println("*********************장바구니 품목 수량제거**********************");
+                        System.out.println("===================================================");
                         cartService.subtractItem();
                         break;
                     case 7:
-                        System.out.println("*********************장바구니 비우기**********************");
+                        System.out.println("===================================================");
                         cartService.clearCart();
                         break;
                     case 8:
-                        System.out.println("*********************주문하기**********************");
+                        System.out.println("===================================================");
                         cartService.order(customer);
                         break;
 

@@ -31,9 +31,8 @@ public class UserServiceimple implements UserService {
         System.out.println("""
                 1.회원가입
                 2.로그인
-                3.비밀번호찾기
-                """);
-        int menu = 0;
+                3.비밀번호찾기""");
+        int menu;
         try {
             menu = Integer.parseInt(br.readLine());
         } catch (Exception e) {
@@ -122,7 +121,7 @@ public class UserServiceimple implements UserService {
             System.out.println("없는 아이디입니다.");
 
         } else {
-            System.out.println("회원님의 아이디는 = " + userRepository.findpassword(id) + "입니다.");
+            System.out.println("회원님의 비밀번호는 = " + userRepository.findpassword(id) + "입니다.");
         }
 
 
