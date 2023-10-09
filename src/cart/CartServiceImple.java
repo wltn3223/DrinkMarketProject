@@ -138,6 +138,20 @@ public class CartServiceImple implements CartService {
 
     @Override
     public void order(Customer customer) {
+        int totalPrice = 0;
+        if (cartList.isEmpty()){
+            System.out.println("장바구니에 항목이 없습니다. 항목을 추가한 후 시도해주세요.");
+            return;
+        }
+        System.out.println("=======회원정보======");
+        System.out.println(customer);
+        System.out.println("=======주문내역======");
+        printCart();
+        for (CartItem cartItem:cartList){
+            totalPrice += cartItem.getTotalprince();
+        }
+        System.out.println("총가격:" + totalPrice);
+        System.out.println("=======주문완료=====");
 
     }
 

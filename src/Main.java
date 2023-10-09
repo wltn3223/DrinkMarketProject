@@ -68,7 +68,7 @@ public class Main { // login user
 
         if (adminmode) {
             quit = false;
-            while (quit) {
+            while (!quit) {
                 System.out.println("관리자로 로그인하셨습니다");
                 int menu = adminService.choiceMenu();
                 if (menu > 2 || (menu < -1)) {
@@ -96,8 +96,8 @@ public class Main { // login user
             while (!quit) {
                 int menu = cartService.choiceMenu();
 
-                if (menu > 7 || (menu < -1)) {
-                    System.out.println("0~7까지의 번호를 선택하세요");
+                if (menu > 8 || (menu < -1)) {
+                    System.out.println("0~8까지의 번호를 선택하세요");
                     continue;
                 }
                 switch (menu) {
@@ -138,8 +138,8 @@ public class Main { // login user
                         cartService.clearCart();
                         break;
                     case 8:
-                        System.out.println("*********************장바구니 비우기**********************");
-
+                        System.out.println("*********************주문하기**********************");
+                        cartService.order(customer);
                         break;
 
 
