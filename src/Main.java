@@ -25,7 +25,7 @@ public class Main { // login user
             int menu = userService.choiceMenu();
 
             if (menu > 4 || (menu < -1)) {
-                System.out.println("1~3까지의 번호를 선택하세요");
+                System.out.println("0~4까지의 번호를 선택하세요");
                 continue;
             }
             switch (menu) {
@@ -71,8 +71,8 @@ public class Main { // login user
             while (quit) {
                 System.out.println("관리자로 로그인하셨습니다");
                 int menu = adminService.choiceMenu();
-                if (menu > 3 || (menu < -1)) {
-                    System.out.println("1~3까지의 번호를 선택하세요");
+                if (menu > 2 || (menu < -1)) {
+                    System.out.println("0~2까지의 번호를 선택하세요");
                     continue;
                 }
                 switch (menu) {
@@ -82,14 +82,12 @@ public class Main { // login user
                         quit = true;
                     case 1:
                         System.out.println("*********************음료목록**********************");
-                        adminService.printDrinkInfo();
+                        adminService.printDrinkList();
                         break;
                     case 2:
                         System.out.println("*********************음료수추가**********************");
                         adminService.addDrink();
                         break;
-                    case 3:
-                        quit = true;
                 }
             }
         } else {
@@ -138,6 +136,10 @@ public class Main { // login user
                     case 7:
                         System.out.println("*********************장바구니 비우기**********************");
                         cartService.clearCart();
+                        break;
+                    case 8:
+                        System.out.println("*********************장바구니 비우기**********************");
+
                         break;
 
 

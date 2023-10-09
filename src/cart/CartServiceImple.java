@@ -2,6 +2,7 @@ package cart;
 
 import Repository.DrinkRepository;
 import item.Drink;
+import user.Customer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -132,6 +133,11 @@ public class CartServiceImple implements CartService {
             System.out.println("올바른 형식으로 입력해주세요.");
         }
 
+
+    }
+
+    @Override
+    public void order(Customer customer) {
 
     }
 
