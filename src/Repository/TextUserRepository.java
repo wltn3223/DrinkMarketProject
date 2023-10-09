@@ -56,17 +56,14 @@ public class TextUserRepository implements UserRepository {
             br.close();
             fr.close();
 
-        } catch (IOException e) {
+        } catch (IOException e) { // 처음에 파일에 아무 내용이 없을 수있기 때문에 catch를 빈칸으로 놔두어 프로그램을 그대로 진행시킴
         }
 
     }
 
     @Override
     public Boolean isId(String id) { // UserMap에 id존재여부
-        if (userDic.containsKey(id)) {
-            return true;
-        }
-        return false;
+        return  userDic.containsKey(id);
     }
     @Override
     public String findpassword(String id) { //Usermap에 id 존재시 id return

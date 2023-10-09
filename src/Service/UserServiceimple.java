@@ -16,7 +16,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
     private final UserRepository userRepository; // UserService가 이용할 User데이터저장소
 
 
-    public UserServiceimple(UserRepository userRepository) {  // User데이터저장소의 구현을 다른곳에서 주입받음(Di)
+    public UserServiceimple(UserRepository userRepository) {  // User데이터저장소의 구현을 다른곳에서 생성자를통해 주입받음(// 의존성주입)
         this.userRepository = userRepository;
         br = new BufferedReader(new InputStreamReader(System.in));
 

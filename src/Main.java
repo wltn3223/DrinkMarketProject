@@ -67,21 +67,21 @@ public class Main { // login user
             quit = false;
             while (!quit) {
                 System.out.println("관리자로 로그인하셨습니다");
-                int menu = adminService.choiceMenu();
-                if (menu > 2 || (menu < 0)) {
+                int menu = adminService.choiceMenu(); // choicemenu에서 메뉴 번호를 입력
+                if (menu > 2 || (menu < 0)) { // 잘못입력시
                     System.out.println("0~2까지의 번호를 선택하세요");
                     continue;
                 }
                 switch (menu) {
-                    case 0:
+                    case 0: // 0 입력시 반복문종료 후 프로그램 종료
                         quit = true;
                     case 1:
                         System.out.println("===================================================");
-                        adminService.printDrinkList();
+                        adminService.printDrinkList();// 현재 판매하는 음료목룍 출력
                         break;
                     case 2:
                         System.out.println("===================================================");
-                        adminService.addDrink();
+                        adminService.addDrink(); // 음료목록 추가
                         break;
                 }
             }
@@ -89,9 +89,9 @@ public class Main { // login user
             quit = false;
             // user
             while (!quit) {
-                int menu = cartService.choiceMenu();
+                int menu = cartService.choiceMenu(); // 메뉴선택
 
-                if (menu > 8 || (menu < 0)) {
+                if (menu > 8 || (menu < 0)) {  // 잘못입력시
                     System.out.println("0~8까지의 번호를 선택하세요");
                     continue;
                 }
@@ -100,37 +100,37 @@ public class Main { // login user
                         quit = true;
                         break;
 
-                    case 1:
+                    case 1: // 고객정보
                         System.out.println("===================================================");
                         System.out.println("고객정보");
                         System.out.println(customer);
                         break;
-                    case 2:
+                    case 2: // 장바구니 출력
                         System.out.println("===================================================");
                         cartService.printCart();
                         break;
-                    case 3:
+                    case 3: // 장바구니 음료 추가
                         System.out.println("===================================================");
                         cartService.addItem();
                         break;
 
-                    case 4:
+                    case 4: // 장바구니 음료 수량 추가
                         System.out.println("===================================================");
                         cartService.addQuantity();
                         break;
-                    case 5:
+                    case 5: // 장바구니 음료 제거
                         System.out.println("===================================================");
                         cartService.removeItem();
                         break;
-                    case 6:
+                    case 6:// 장바구니 음료 수량 제거
                         System.out.println("===================================================");
                         cartService.subtractItem();
                         break;
-                    case 7:
+                    case 7:// 장바구니 모든항목 제거
                         System.out.println("===================================================");
                         cartService.clearCart();
                         break;
-                    case 8:
+                    case 8:// 주문하기
                         System.out.println("===================================================");
                         cartService.order(customer);
                         break;

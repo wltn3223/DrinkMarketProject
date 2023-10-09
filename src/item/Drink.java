@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Drink extends Item{
 
-    private final String capacity;
-    private final String kind;
+    private final String capacity; //용량
+    private final String kind; // 종류
 
     public Drink(String kind, String name, int price,String capacity) {
         super(name, price);
@@ -28,7 +28,7 @@ public class Drink extends Item{
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) { // Item을 상속한 클래스는 iD를 통해 비교 가능
         if(!(obj instanceof Drink)){
             return false;
         }
