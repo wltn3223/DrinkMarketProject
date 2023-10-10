@@ -20,11 +20,11 @@ public class TextUserRepository implements UserRepository {
         
         
         
-        try {
+        try { // 파일이 존재하지 않거나 flag가 true로 들어오거나 들어온 정보가 아예없다면 txt파일 내용 다지움
             if (!(new File("list.txt").exists()) || overwrite == true || info.size() == 0) {  
-            	fw = new FileWriter("list.txt"); // 파일이 없으면 새로 파일을 만들어씀, 아니면 덮어쓰기
+            	fw = new FileWriter("list.txt"); // 
             } else {
-                fw = new FileWriter("list.txt", true); // txt파일이 존재하면,이어쓰기
+                fw = new FileWriter("list.txt", true); // 아니면 이어쓰기
             }
 
             BufferedWriter bw = new BufferedWriter(fw);
@@ -78,11 +78,20 @@ public class TextUserRepository implements UserRepository {
     		info.add(data.getName());
     		info.add(data.getAddress()); 
     	}
-    	save(info,true); // 덮어쓴다
+    	save(info,true); // 덮어쓴다, 회원이 한명있을때 그한명이 탈퇴하면 info에는 담을 정보가 없음 size는 0, 아무도없다는 뜻이기때문에
+    	// save에서 파일내용을 알아서 싹지움
     	
     	
 		
 	}
+
+	@Override
+	public void updateUser(Customer customer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 	@Override
 	public void printUserList() {
@@ -112,6 +121,7 @@ public class TextUserRepository implements UserRepository {
             return null;
         }
     }
+    
 
 
 

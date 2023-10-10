@@ -123,24 +123,28 @@ public class UserServiceimple implements UserService { // Userservice 구현
 
 
     }
+    public void updateUser() {
+    	Customer customer = login();
+    	if(customer == null) {
+    		System.out.println("비밀번호가틀렸습니다.");
+    		return;
+    	}
+    	System.out.println("정");
+    	userRepository.updateUser(customer);
+    	
+    }
+
 
 
 	@Override
-	public void readUserinfo() {
-		System.out.println("삭제하실 id를 입력하세요");
-		
-	}
-
-
-	@Override
-	public void removeUser() {
+	public void removeUser() { // 회원 탈퇴 로그인 성공시 저장소에서 삭제
 		Customer customer = login();
 		if(customer == null) {
 			System.out.println("비밀번호가틀렸습니다.");
 			return;
 			
 		}
-		userRepository.removeUser(customer);
+		userRepository.removeUser(customer); // 저장소로 넘기면 알아서 삭제
 		 System.out.println("회원탈퇴가 정상적으로 완료되었습니다.");
 		
 		
