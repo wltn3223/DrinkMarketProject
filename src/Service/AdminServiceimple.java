@@ -61,13 +61,13 @@ public class AdminServiceimple implements AdminService{
 
         System.out.println("음료수의 종류를 입력하세요(예:차, 탄산, 이온)");
         try {
-            info[0] = br.readLine().trim().trim();
+            info[0] = br.readLine().trim();
             System.out.println("음료수의 이름을 입력하세요");
-            info[1] = br.readLine().trim().trim();
+            info[1] = br.readLine().trim();
             System.out.println("음료수의 가격을 입력하세요(숫자만 입력, 단위:원)");
-            info[2] = br.readLine().trim().trim();
+            info[2] = br.readLine().trim();
             System.out.println("음료수의 용량과 단위를 입력하세요(예:250ml, 1.5L)");
-            info[3] = br.readLine().trim().trim();
+            info[3] = br.readLine().trim();
             drink = new Drink(info[0], info[1], Integer.parseInt(info[2]), info[3]);
         } catch (Exception e) {
             System.out.println("형식에 맞게 입력해주세요.");

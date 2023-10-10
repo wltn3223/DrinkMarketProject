@@ -32,6 +32,8 @@ public class UserServiceimple implements UserService { // Userservice 구현
                 1.회원가입
                 2.로그인
                 3.비밀번호찾기
+                4.관리자로그인
+         
                 0.종료""");
         int menu;
         try {
