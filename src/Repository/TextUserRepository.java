@@ -4,7 +4,6 @@ import user.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextUserRepository implements UserRepository {
@@ -14,14 +13,11 @@ public class TextUserRepository implements UserRepository {
 
 
     @Override
-    public void save(ArrayList<String> info,boolean flag) {  // 입력받은 정보List를 txt파일에 저장
+    public void save(ArrayList<String> info,boolean overwrite) {  // 입력받은 정보List를 txt파일에 저장 overwrite 덮어쓰기 여부
         FileWriter fw;
-        boolean overwrite = flag;
-        
-        
         
         try { // 파일이 존재하지 않거나 flag가 true로 들어오거나 들어온 정보가 아예없다면 txt파일 내용 다지움
-            if (!(new File("list.txt").exists()) || overwrite == true || info.size() == 0) {  
+            if (!(new File("list.txt").exists()) || overwrite || info.isEmpty()) {
             	fw = new FileWriter("list.txt"); // 
             } else {
                 fw = new FileWriter("list.txt", true); // 아니면 이어쓰기
@@ -70,7 +66,7 @@ public class TextUserRepository implements UserRepository {
 
     @Override
 	public void removeUser(Customer customer) {
-    	ArrayList<String> info = new ArrayList<String>();
+    	ArrayList<String> info = new ArrayList<>();
     	userDic.remove(customer.getId());
     	for(Customer data: userDic.values()) {
     		info.add(data.getId());
@@ -87,7 +83,7 @@ public class TextUserRepository implements UserRepository {
 
 	@Override
 	public void updateUser(Customer customer) {
-        ArrayList<String> info = new ArrayList<String>();
+        ArrayList<String> info = new ArrayList<>();
         info.add(customer.getId());
         info.add(customer.getPassword());
         info.add(customer.getName());
@@ -100,7 +96,7 @@ public class TextUserRepository implements UserRepository {
 
 	@Override
 	public void printUserList() {
-		userDic.values().forEach(customer -> System.out.println(customer));
+		userDic.values().forEach(System.out::println);
 	
 	}
 

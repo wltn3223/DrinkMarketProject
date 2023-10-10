@@ -12,7 +12,7 @@ public interface UserRepository {
     void loadUserList();
     void removeUser(Customer customer);
     Boolean isId(String id);
-    public String findpassword(String id);
+    String findpassword(String id);
     void updateUser(Customer customer);
     Customer findCustomer(Customer customer);
     void printUserList();

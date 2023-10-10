@@ -27,17 +27,10 @@ public class Item {  // 모든 아이템은 ID와 이름 가격 존재
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     @Override
     public boolean equals(Object o) {

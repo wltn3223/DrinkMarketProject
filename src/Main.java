@@ -73,13 +73,13 @@ public class Main { // login user
             }
 
         }
+        quit = false; // 다시 무한루프문 작동시킴
 
         if (adminmode) {
-            quit = false;
             while (!quit) {
                 System.out.println("관리자로 로그인하셨습니다");
                 int menu = adminService.choiceMenu(); // choicemenu에서 메뉴 번호를 입력
-                if (menu > 2 || (menu < 0)) { // 잘못입력시
+                if (menu > 3 || (menu < 0)) { // 잘못입력시
                     System.out.println("0~2까지의 번호를 선택하세요");
                     continue;
                 }
@@ -101,7 +101,7 @@ public class Main { // login user
                 }
             }
         } else {
-            quit = false;
+
             // user
             while (!quit) {
                 int menu = cartService.choiceMenu(); // 메뉴선택
