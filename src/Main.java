@@ -94,6 +94,10 @@ public class Main { // login user
                         System.out.println("===================================================");
                         adminService.addDrink(); // 음료목록 추가
                         break;
+                    case 3:
+                        System.out.println("===================================================");
+                        adminService.printUserList(); // 회원 목록확인
+                        break;
                 }
             }
         } else {

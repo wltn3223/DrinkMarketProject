@@ -1,6 +1,7 @@
 package Service;
 
 import Repository.DrinkRepository;
+import Repository.UserRepository;
 import item.Drink;
 import user.Admin;
 
@@ -9,11 +10,13 @@ import java.io.InputStreamReader;
 
 public class AdminServiceimple implements AdminService{
     private final DrinkRepository drinkRepository;  // 관리자서비스는 drink 저장소를 이용함
+    private final UserRepository userRepository;
     private BufferedReader br;
 
 
-    public AdminServiceimple(DrinkRepository drinkRepository) { // 관리자서비스 객체 구현시 저장소도 같이 구현함(생성자를 통해 외부에서 주입)
+    public AdminServiceimple(DrinkRepository drinkRepository,UserRepository userRepository) { // 관리자서비스 객체 구현시 저장소도 같이 구현함(생성자를 통해 외부에서 주입)
         this.drinkRepository = drinkRepository;                     // 의존성주입
+        this.userRepository =userRepository;
         br = new BufferedReader(new InputStreamReader(System.in));
 
     }
@@ -81,6 +84,10 @@ public class AdminServiceimple implements AdminService{
     public void printDrinkList(){
         drinkRepository.printDrinkList();
     } // 현재 출시된 음료 목록 출력 (저장소에서 가져옴)
+
+    public void printUserList(){ // 회원목록 확인.
+                userRepository.printUserList();
+    }
 
 
 }

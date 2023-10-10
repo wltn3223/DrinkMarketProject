@@ -26,7 +26,6 @@ public class UserServiceimple implements UserService { // Userservice 구현
     @Override
     public int choiceMenu() {  // 메뉴선택
         userRepository.loadUserList(); // 로그인 기능, 비밀번호 찾기를 고를수있기때문에 User데이터저장소에 있는 user맵에 회원목록을 불러옴
-        userRepository.printUserList();
         System.out.println("===================================================");
         System.out.println("메뉴를 선택하세요");
         System.out.println("""

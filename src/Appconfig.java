@@ -14,7 +14,7 @@ public class Appconfig { // 모든 서비스 생성 관리 // 서비스들이 �
         return new UserServiceimple(userRepository());
     }
     public AdminService adminService(){
-        return  new AdminServiceimple(drinkRepository());
+        return  new AdminServiceimple(drinkRepository(),userRepository());
     }
     public CartService cartService(){
         return  new CartServiceImple(drinkRepository());

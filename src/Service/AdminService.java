@@ -7,5 +7,6 @@ public interface AdminService {
     void addDrink();
     void printDrinkList();
     boolean login();
+    void printUserList();
 
 }
