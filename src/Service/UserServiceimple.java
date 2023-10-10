@@ -26,13 +26,15 @@ public class UserServiceimple implements UserService { // Userservice 구현
     @Override
     public int choiceMenu() {  // 메뉴선택
         userRepository.loadUserList(); // 로그인 기능, 비밀번호 찾기를 고를수있기때문에 User데이터저장소에 있는 user맵에 회원목록을 불러옴
+        userRepository.printUserList();
         System.out.println("===================================================");
         System.out.println("메뉴를 선택하세요");
         System.out.println("""
                 1.회원가입
                 2.로그인
                 3.비밀번호찾기
-                4.관리자로그인
+                4.회원탈퇴
+                5.관리자로그인
          
                 0.종료""");
         int menu;
@@ -73,7 +75,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
 
         }
 
-        userRepository.save(info);  // 정보를 제대로 입력받을시  정보List를 저장소에 전달, 이후 저장소가 저장
+        userRepository.save(info, false);  // 정보를 제대로 입력받을시  정보List를 저장소에 전달, 이후 저장소가 저장 기본적으로 이어쓰기, true 이어쓰기
         System.out.println("회원가입이 정상적으로 완료되었습니다.");
 
 
@@ -88,26 +90,18 @@ public class UserServiceimple implements UserService { // Userservice 구현
         try {
             System.out.println("아이디를 입력하세요.");
             id = br.readLine().trim();
-            if (userRepository.isId(id)) {  // id가 저장소에 있을시 비밀번호 입력
-                System.out.println("비밀 번호를 입력하세요");
-                password = br.readLine().trim();
-                customer = userRepository.findCustomer(new Customer(id, password));
-            } else { // id없을시 null return
-                System.out.println("없는 id입니다.");
-                return null;
-
-            }
+            if (!(userRepository.isId(id))) {  // 
+            	System.out.println("없는 id입니다."); // id없을시 null return
+            	return null;
+            } 
+            System.out.println("비밀 번호를 입력하세요");
+            password = br.readLine().trim();
+            customer = userRepository.findCustomer(new Customer(id, password)); //id가 저장소에 있을시 비밀번호 입력
         } catch (Exception e) {
             System.out.println("올바른 형식으로 입력해주세요");  // 예외처리
         }
-        if (customer == null) {
-            System.out.println("비밀번호가 틀렸습니다.");
-            return null;
-        } else {
-            System.out.println("로그인 성공");
-            return customer;
-
-        }
+        return customer;
+      
     }
 
 
@@ -122,12 +116,34 @@ public class UserServiceimple implements UserService { // Userservice 구현
         }
         if (userRepository.findpassword(id) == null) { // 입력한 아이디가 저장소에 있으면 비밀번호 출력
             System.out.println("없는 아이디입니다.");
-
-        } else {
-            System.out.println("회원님의 비밀번호는 = " + userRepository.findpassword(id) + "입니다.");
-        }
+            return;
+        } 
+         System.out.println("회원님의 비밀번호는 = " + userRepository.findpassword(id) + "입니다.");
+      
 
 
     }
+
+
+	@Override
+	public void readUserinfo() {
+		System.out.println("삭제하실 id를 입력하세요");
+		
+	}
+
+
+	@Override
+	public void removeUser() {
+		Customer customer = login();
+		if(customer == null) {
+			System.out.println("비밀번호가틀렸습니다.");
+			return;
+			
+		}
+		userRepository.removeUser(customer);
+		 System.out.println("회원탈퇴가 정상적으로 완료되었습니다.");
+		
+		
+	}
 
 }

@@ -42,15 +42,23 @@ public class Main { // login user
                     System.out.println("===================================================");
                     customer = userService.login(); // 로그인 기능 로그인 성공시 Customer 인스턴스반환 실패시 null반환
                     if (customer != null) {
+                    	System.out.println("로그인 성공");
                         quit = true; // 로그인 성공시 반복문 탈출
+                    }
+                    else {
+                    	System.out.println("로그인 실패");
                     }
                     break;
                 case 3:
                     System.out.println("===================================================");
                     userService.findpassword(); // 비밀번호찾기
                     break;
-
                 case 4:
+                	System.out.println("===================================================");
+                	userService.removeUser(); // 회원탈퇴
+                	break;
+
+                case 5:
                     System.out.println("===================================================");
                     adminmode = adminService.login(); // 관리자 로그인 관리자 로그인 성공시 adminmode로 전환
                     if (!adminmode) {

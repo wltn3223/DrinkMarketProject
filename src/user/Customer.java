@@ -23,7 +23,23 @@ public class Customer extends User {
 
 
         
-    @Override
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Override
     public boolean equals(Object obj) {  // 비밀번호와 id가 같아야 같은 인스턴스로 판단
     	Customer customer;
     	if(!(obj instanceof Customer)){

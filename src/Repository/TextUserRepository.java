@@ -4,6 +4,7 @@ import user.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextUserRepository implements UserRepository {
@@ -13,17 +14,21 @@ public class TextUserRepository implements UserRepository {
 
 
     @Override
-    public void save(ArrayList<String> info) {  // 입력받은 정보List를 txt파일에 저장
+    public void save(ArrayList<String> info,boolean flag) {  // 입력받은 정보List를 txt파일에 저장
         FileWriter fw;
+        boolean overwrite = flag;
+        
+        
+        
         try {
-            if (new File("list.txt").exists()) {  // txt파일이 존재하면
-                fw = new FileWriter("list.txt", true); // 파일에 이어서씀
+            if (!(new File("list.txt").exists()) || overwrite == true || info.size() == 0) {  
+            	fw = new FileWriter("list.txt"); // 파일이 없으면 새로 파일을 만들어씀, 아니면 덮어쓰기
             } else {
-                fw = new FileWriter("list.txt"); // 파일이 없으면 새로 파일을 만들어씀
+                fw = new FileWriter("list.txt", true); // txt파일이 존재하면,이어쓰기
             }
 
             BufferedWriter bw = new BufferedWriter(fw);
-
+           
             for (String data : info) {
                 bw.write(data + "\n");
             }
@@ -36,6 +41,8 @@ public class TextUserRepository implements UserRepository {
         loadUserList();
 
     }
+    
+    
 
     @Override
     public void loadUserList() { // 유저목록이 저장된 txt에서 UserMap으로 유저목록 가져옴
@@ -62,6 +69,30 @@ public class TextUserRepository implements UserRepository {
     }
 
     @Override
+	public void removeUser(Customer customer) {
+    	ArrayList<String> info = new ArrayList<String>();
+    	userDic.remove(customer.getId());
+    	for(Customer data: userDic.values()) {
+    		info.add(data.getId());
+    		info.add(data.getPassword());
+    		info.add(data.getName());
+    		info.add(data.getAddress()); 
+    	}
+    	save(info,true); // 덮어쓴다
+    	
+    	
+		
+	}
+
+	@Override
+	public void printUserList() {
+		userDic.values().forEach(customer -> System.out.println(customer));
+	
+	}
+
+
+
+	@Override
     public Boolean isId(String id) { // UserMap에 id존재여부
         return  userDic.containsKey(id);
     }
