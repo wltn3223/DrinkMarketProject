@@ -18,13 +18,12 @@ public class Main { // login user
         boolean adminmode = false; // 관리자의 로그인 여부 구분
 
 
-
         boolean quit = false;  // 각 서비스 이용 중단 여부
         while (!quit) {
 
             int menu = userService.choiceMenu(); // 유저가 메뉴 번호를 선택해 UserService 이용
 
-            if (menu > 4 || (menu < 0)) {
+            if (menu > 6 || (menu < 0)) {
                 System.out.println("0~4까지의 번호를 선택하세요"); // 없는 메뉴를 누를시 재반복
                 continue;
             }
@@ -42,11 +41,10 @@ public class Main { // login user
                     System.out.println("===================================================");
                     customer = userService.login(); // 로그인 기능 로그인 성공시 Customer 인스턴스반환 실패시 null반환
                     if (customer != null) {
-                    	System.out.println("로그인 성공");
+                        System.out.println("로그인 성공");
                         quit = true; // 로그인 성공시 반복문 탈출
-                    }
-                    else {
-                    	System.out.println("로그인 실패");
+                    } else {
+                        System.out.println("로그인 실패");
                     }
                     break;
                 case 3:
@@ -54,11 +52,15 @@ public class Main { // login user
                     userService.findpassword(); // 비밀번호찾기
                     break;
                 case 4:
-                	System.out.println("===================================================");
-                	userService.removeUser(); // 회원탈퇴
-                	break;
-
+                    System.out.println("===================================================");
+                    userService.removeUser(); // 회원탈퇴
+                    break;
                 case 5:
+                    System.out.println("===================================================");
+                    userService.updateUser();
+                    break;
+
+                case 6:
                     System.out.println("===================================================");
                     adminmode = adminService.login(); // 관리자 로그인 관리자 로그인 성공시 adminmode로 전환
                     if (!adminmode) {

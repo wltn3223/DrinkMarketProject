@@ -87,7 +87,12 @@ public class TextUserRepository implements UserRepository {
 
 	@Override
 	public void updateUser(Customer customer) {
-		// TODO Auto-generated method stub
+        ArrayList<String> info = new ArrayList<String>();
+        info.add(customer.getId());
+        info.add(customer.getPassword());
+        info.add(customer.getName());
+        info.add(customer.getAddress());
+        save(info,true);
 		
 	}
 

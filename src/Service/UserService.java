@@ -11,5 +11,6 @@ public interface UserService {
     Customer login(); // 로그인
     void findpassword(); // 비밀번호찾기
     void removeUser();
+    public void updateUser();
 
 }

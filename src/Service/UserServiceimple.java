@@ -34,7 +34,8 @@ public class UserServiceimple implements UserService { // Userservice 구현
                 2.로그인
                 3.비밀번호찾기
                 4.회원탈퇴
-                5.관리자로그인
+                5.정보수정하기
+                6.관리자로그인
          
                 0.종료""");
         int menu;
@@ -75,7 +76,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
 
         }
 
-        userRepository.save(info, false);  // 정보를 제대로 입력받을시  정보List를 저장소에 전달, 이후 저장소가 저장 기본적으로 이어쓰기, true 이어쓰기
+        userRepository.save(info, false);  // 정보를 제대로 입력받을시  정보 List를 저장소에 전달, 이후 저장소가 저장 기본적으로 이어쓰기,  덮어쓰기(flag = true;)
         System.out.println("회원가입이 정상적으로 완료되었습니다.");
 
 
@@ -129,9 +130,24 @@ public class UserServiceimple implements UserService { // Userservice 구현
     		System.out.println("비밀번호가틀렸습니다.");
     		return;
     	}
-    	System.out.println("정");
-    	userRepository.updateUser(customer);
-    	
+    	System.out.println("회원정보수정하기 1. 비밀번호 변경, 2.주소 변경(숫자입력) ");
+        int choice;
+        try {
+            choice = Integer.parseInt(br.readLine()) ;
+        if(choice ==1){
+            System.out.println("변경할 비밀번호입력");
+            String password = br.readLine();
+            customer.setPassword(password);
+        }else {
+            System.out.println("변경할 주소입력");
+            String address = br.readLine();
+            customer.setAddress(address);
+        }
+        } catch (Exception e) {
+            System.out.println("똑바로 입력해주세요"); // 예외처리
+        }
+        userRepository.updateUser(customer);
+        System.out.println("변경완료");
     }
 
 
