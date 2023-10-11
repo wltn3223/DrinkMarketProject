@@ -145,7 +145,7 @@ public class CartServiceImple implements CartService {
     public void removeItem() { // ID를 통해 장바구니에 음료 존재여부 확인후 제거
         printCart();
         String id;
-        System.out.println("감소시킬 음료의 id를 입력해주세요");
+        System.out.println("제거할 음료의 id를 입력해주세요");
         try {
             id = br.readLine();
             if (!(isCartList(id).isPresent())) { // 음료가 없을때
