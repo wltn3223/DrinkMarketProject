@@ -79,6 +79,9 @@ public class AdminServiceimple implements AdminService{
             System.out.println("다시시도해주세요");
             return;
         }
+        while(drinkRepository.IsDrink(drink.getId()) != null) {
+        	drink =  new Drink(info[0], info[1], Integer.parseInt(info[2]), info[3]);
+        }// 무한 반복 drink의 id가 겹칠시 새로 다시 객체생성  겹치지않으면 저장
         drinkRepository.saveDrink(drink); // 저장소로 넘김
         System.out.println("음료수가 추가되었습니다.");
 
