@@ -66,9 +66,18 @@ public class TextUserRepository implements UserRepository {
 
     @Override
 	public void removeUser(Customer customer) {
-    	ArrayList<String> info = new ArrayList<>();
     	userDic.remove(customer.getId());
-    	for(Customer data: userDic.values()) {
+    	updateUser();
+    
+    	
+    	
+		
+	}
+
+	@Override
+	public void updateUser() { // 변경된내용 다시 txt파일에 저장(덮어씀)
+		ArrayList<String> info = new ArrayList<>();
+		for(Customer data: userDic.values()) {
     		info.add(data.getId());
     		info.add(data.getPassword());
     		info.add(data.getName());
@@ -76,19 +85,6 @@ public class TextUserRepository implements UserRepository {
     	}
     	save(info,true); // 덮어쓴다, 회원이 한명있을때 그한명이 탈퇴하면 info에는 담을 정보가 없음 size는 0, 아무도없다는 뜻이기때문에
     	// save에서 파일내용을 알아서 싹지움
-    	
-    	
-		
-	}
-
-	@Override
-	public void updateUser(Customer customer) {
-        ArrayList<String> info = new ArrayList<>();
-        info.add(customer.getId());
-        info.add(customer.getPassword());
-        info.add(customer.getName());
-        info.add(customer.getAddress());
-        save(info,true);
 		
 	}
 
@@ -96,7 +92,7 @@ public class TextUserRepository implements UserRepository {
 
 	@Override
 	public void printUserList() {
-		userDic.values().forEach(System.out::println);
+		userDic.keySet().stream().forEach(key -> System.out.println(userDic.get(key)));
 	
 	}
 

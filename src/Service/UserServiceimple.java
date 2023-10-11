@@ -57,7 +57,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
             try {
                 id = br.readLine().trim();
                 if (userRepository.isId(id)) {
-                    System.out.println("중복되는 아이디입니다.\n 다시입력해주세요."); // 중복시 재입력
+                    System.out.println("중복되는 아이디입니다.\n다시입력해주세요."); // 중복시 재입력
                     continue;
                 }
                 info.add(id);
@@ -129,7 +129,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
     		System.out.println("비밀번호가틀렸습니다.");
     		return;
     	}
-    	System.out.println("회원정보수정하기 1. 비밀번호 변경, 2.주소 변경(숫자입력) ");
+    	System.out.println("회원정보수정하기 1. 비밀번호 변경, 2.주소 변경");
         int choice;
         try {
             choice = Integer.parseInt(br.readLine()) ;
@@ -145,7 +145,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
         } catch (Exception e) {
             System.out.println("똑바로 입력해주세요"); // 예외처리
         }
-        userRepository.updateUser(customer);
+        userRepository.updateUser();
         System.out.println("변경완료");
     }
 

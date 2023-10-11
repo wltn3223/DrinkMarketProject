@@ -57,7 +57,7 @@ public class Main { // login user
                     break;
                 case 5:
                     System.out.println("===================================================");
-                    userService.updateUser();
+                    userService.updateUser(); // 정보변경
                     break;
 
                 case 6:
@@ -86,6 +86,7 @@ public class Main { // login user
                 switch (menu) {
                     case 0: // 0 입력시 반복문종료 후 프로그램 종료
                         quit = true;
+                        break;
                     case 1:
                         System.out.println("===================================================");
                         adminService.printDrinkList();// 현재 판매하는 음료목룍 출력

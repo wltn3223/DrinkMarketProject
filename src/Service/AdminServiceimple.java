@@ -22,12 +22,14 @@ public class AdminServiceimple implements AdminService{
     }
     @Override
     public int choiceMenu() { // 관리자 메뉴 선택
+    	userRepository.loadUserList(); // Map으로 user정보불러옴
         drinkRepository.loadDrink();
         System.out.println("===================================================");
         System.out.println("메뉴를 선택하세요");
         System.out.println("""
                 1.음료목록
                 2.음료추가
+                3.회원목록확인
                 0.종료""");
         int menu;
         try {
@@ -82,11 +84,13 @@ public class AdminServiceimple implements AdminService{
 
     }
     public void printDrinkList(){
+    	System.out.println("음료목록");
         drinkRepository.printDrinkList();
     } // 현재 출시된 음료 목록 출력 (저장소에서 가져옴)
 
     public void printUserList(){ // 회원목록 확인.
-                userRepository.printUserList();
+    	System.out.println("회원목록확인");
+    	userRepository.printUserList();
     }
 
 
