@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class TextDrinkRepository implements DrinkRepository { // 출시된 음료 저장소
-    private final HashMap<String, Drink> drinkDic = new HashMap<>();// Key = drink의 id, value = drink 인스턴스
+    private final static HashMap<String, Drink> drinkDic = new HashMap<>();// Key = drink의 id, value = drink 인스턴스
 
     @Override
     public void loadDrink() {

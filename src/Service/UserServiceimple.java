@@ -67,6 +67,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
                 info.add(br.readLine().trim());
                 System.out.println("주소를 입력하세요");
                 info.add(br.readLine().trim());
+                info.add("0"); // 처음 잔고 0원
             } catch (Exception e) {
                 System.out.println("올바른 형식으로 입력해주세요");
                 return;  // 예외발생시 메서드 종료
@@ -151,7 +152,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
 
 
 
-	@Override
+    @Override
 	public void removeUser() { // 회원 탈퇴 로그인 성공시 저장소에서 삭제
 		Customer customer = login();
 		if(customer == null) {

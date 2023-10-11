@@ -107,7 +107,7 @@ public class Main { // login user
             while (!quit) {
                 int menu = cartService.choiceMenu(); // 메뉴선택
 
-                if (menu > 8 || (menu < 0)) {  // 잘못입력시
+                if (menu > 9 || (menu < 0)) {  // 잘못입력시
                     System.out.println("0~8까지의 번호를 선택하세요");
                     continue;
                 }
@@ -121,32 +121,36 @@ public class Main { // login user
                         System.out.println("고객정보");
                         System.out.println(customer);
                         break;
-                    case 2: // 장바구니 출력
+                    case 2: // 현금충전
+                        System.out.println("===================================================");
+                        cartService.depositMoney(customer);
+                        break;
+                    case 3: // 장바구니 출력
                         System.out.println("===================================================");
                         cartService.printCart();
                         break;
-                    case 3: // 장바구니 음료 추가
+                    case 4: // 장바구니 음료 추가
                         System.out.println("===================================================");
                         cartService.addItem();
                         break;
 
-                    case 4: // 장바구니 음료 수량 추가
+                    case 5: // 장바구니 음료 수량 추가
                         System.out.println("===================================================");
                         cartService.addQuantity();
                         break;
-                    case 5: // 장바구니 음료 제거
+                    case 6: // 장바구니 음료 제거
                         System.out.println("===================================================");
                         cartService.removeItem();
                         break;
-                    case 6:// 장바구니 음료 수량 제거
+                    case 7:// 장바구니 음료 수량 제거
                         System.out.println("===================================================");
                         cartService.subtractItem();
                         break;
-                    case 7:// 장바구니 모든항목 제거
+                    case 8:// 장바구니 모든항목 제거
                         System.out.println("===================================================");
                         cartService.clearCart();
                         break;
-                    case 8:// 주문하기
+                    case 9:// 주문하기
                         System.out.println("===================================================");
                         cartService.order(customer);
                         break;

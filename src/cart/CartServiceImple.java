@@ -1,10 +1,12 @@
 package cart;
 
 import Repository.DrinkRepository;
+import Repository.UserRepository;
 import item.Drink;
 import user.Customer;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -14,10 +16,12 @@ public class CartServiceImple implements CartService {
 
     ArrayList<CartItem> cartList = new ArrayList<>(); // 장바구니 항목 배열
     DrinkRepository drinkRepository; // 장바구니 서비스는 음료 저장소를 이용
+    UserRepository userRepository;
     private BufferedReader br; // 키보드로 입력받음
 
-    public CartServiceImple(DrinkRepository drinkRepository) { // 생성자를통해 음료저장소 주입 (의존성 주입)
+    public CartServiceImple(DrinkRepository drinkRepository,UserRepository userRepository) { // 생성자를통해 음료저장소 주입 (의존성 주입)
         this.drinkRepository = drinkRepository;
+        this.userRepository = userRepository;
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -27,13 +31,14 @@ public class CartServiceImple implements CartService {
         System.out.println("메뉴를 선택하세요");
         System.out.println("""
                 1.고객정보확인
-                2.내 장바구니 확인
-                3.장바구니 품목추가
-                4.장바구니 품목 수량추가
-                5.장바구니 품목 제거
-                6.장바구니 품목 수량제거
-                7.장바구니비우기
-                8.주문하기
+                2.현금충전
+                3.내 장바구니 확인
+                4.장바구니 품목추가
+                5.장바구니 품목 수량추가
+                6.장바구니 품목 제거
+                7.장바구니 품목 수량제거
+                8.장바구니비우기
+                9.주문하기
                 0.종료""");
         int menu;
         try {
@@ -163,7 +168,7 @@ public class CartServiceImple implements CartService {
     }
 
     @Override
-    public void order(Customer customer) { // 주문하기 customer객체를 받아 customer정보와 장바구니 내역 가격 출력
+    public void order(Customer customer) { // 주문하기 customer객체를 받아 customer정보와 장바구니 내역 내 보유 현금, 장바구니 총가격, 주문후 보유잔액 출력후 저장.
         int totalPrice = 0;
         if (cartList.isEmpty()){
             System.out.println("장바구니에 항목이 없습니다. 항목을 추가한 후 시도해주세요.");
@@ -176,8 +181,32 @@ public class CartServiceImple implements CartService {
         for (CartItem cartItem:cartList){
             totalPrice += cartItem.getTotalprince();
         }
+        System.out.println("보유 잔액" + customer.getMoney());
         System.out.println("총가격:" + totalPrice);
+        if(customer.getMoney()<totalPrice){
+            System.out.println("잔액이부족합니다");
+            return;
+        }
+
+        System.out.println("결제후 잔액:" + (customer.getMoney() - totalPrice));
+        customer.setMoney(customer.getMoney() - totalPrice);
+        userRepository.updateUser();
         System.out.println("====================주문완료=========================");
+
+
+    }
+
+    @Override // 현금 충전 입력한 금액 충전
+    public void depositMoney(Customer customer) {
+        System.out.println("충전 하실 금액을 입력하세요(단위:원)");
+        try {
+            String money = br.readLine();
+            customer.depositMoney(Integer.parseInt(money));
+            System.out.println("충전이완료되었습니다.");
+            userRepository.updateUser();
+        } catch (Exception e) {
+            System.out.println("올바른 형식으로 입력해주세요");
+        }
 
     }
 

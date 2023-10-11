@@ -17,7 +17,7 @@ public class Appconfig { // 모든 서비스 생성 관리 // 서비스들이 �
         return  new AdminServiceimple(drinkRepository(),userRepository());
     }
     public CartService cartService(){ // 카트서비스는 음료저장소이용
-        return  new CartServiceImple(drinkRepository());
+        return  new CartServiceImple(drinkRepository(),userRepository());
     }
 
     private DrinkRepository drinkRepository() {

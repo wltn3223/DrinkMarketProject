@@ -15,5 +15,7 @@ public interface CartService {
 
     void order(Customer customer); // 장바구니에 담은 항목 주문하기
 
+    void depositMoney(Customer customer);
+
 
 }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class TextUserRepository implements UserRepository {
 
-    private final HashMap<String, Customer> userDic = new HashMap<>();
+    private final static HashMap<String, Customer> userDic = new HashMap<>();
     // user id는 중복허용 되지 않기 때문에 id와, customer 객체로 맵구성
 
 
@@ -46,13 +46,14 @@ public class TextUserRepository implements UserRepository {
             FileReader fr = new FileReader("list.txt");
             BufferedReader br = new BufferedReader(fr);
             String customerId;
-            String[] info = new String[4];
+            String[] info = new String[5];
             while ((customerId = br.readLine()) != null) {
                 info[0] = customerId;
                 info[1] = br.readLine();
                 info[2] = br.readLine();
                 info[3] = br.readLine();
-                userDic.put(info[0], new Customer(info[0], info[1], info[2], info[3]));
+                info[4] = br.readLine();
+                userDic.put(info[0], new Customer(info[0], info[1], info[2], info[3],Integer.parseInt(info[4])));
                 // 유저목록 가져온후 map에 저장
             }
 
@@ -81,7 +82,8 @@ public class TextUserRepository implements UserRepository {
     		info.add(data.getId());
     		info.add(data.getPassword());
     		info.add(data.getName());
-    		info.add(data.getAddress()); 
+    		info.add(data.getAddress());
+            info.add(String.valueOf(data.getMoney()));
     	}
     	save(info,true); // 덮어쓴다, 회원이 한명있을때 그한명이 탈퇴하면 info에는 담을 정보가 없음 size는 0, 아무도없다는 뜻이기때문에
     	// save에서 파일내용을 알아서 싹지움

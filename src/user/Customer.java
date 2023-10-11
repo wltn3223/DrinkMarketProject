@@ -3,6 +3,7 @@ package user;
 import java.util.Objects;
 
 public class Customer extends User {
+	private int money;
 	private String name;
     private String address;
 
@@ -12,24 +13,33 @@ public class Customer extends User {
         super(id,password);
         this.name = null;
         this.address = null;
+		this.money = 0;
     }
-	
-    public Customer(String id, String password,String name, String address) {
+
+	public Customer(String id, String password,String name, String address,int money) {
         super(id,password);
         this.name = name;
         this.address = address;
+		this.money = money;
 
     }
 
+	public int getMoney() {
+		return money;
+	}
+	public void depositMoney(int money){ // 현금 입금
+		this.money += money;
+	}
 
-        
-    public String getName() {
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+
 
 	public String getAddress() {
 		return address;
@@ -64,8 +74,9 @@ public class Customer extends User {
 		return "ID= " + this.getId() + "\n"
 				+"비밀번호= " + this.getPassword() + "\n"
 				+ "이름= " + name + "\n"
-				+ "주소= " + address;
-				
+				+ "주소= " + address + "\n"
+				+ "잔고= " + money + "원";
+
 	}
 
 
