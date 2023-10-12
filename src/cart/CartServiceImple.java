@@ -50,6 +50,10 @@ public class CartServiceImple implements CartService {
     }
 
     public void clearCart() { // 장바구니 비우기
+    	if(cartList.size() != 0) {
+    		System.out.println("이미 장바구니가 비어있습니다.");
+    		return;
+    	}
         cartList.clear();
         System.out.println("장바구니를 비웠습니다. 확인해주세요.");
 
