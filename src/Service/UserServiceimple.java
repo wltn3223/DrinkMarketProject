@@ -97,7 +97,10 @@ public class UserServiceimple implements UserService { // Userservice 구현
             } 
             System.out.println("비밀 번호를 입력하세요");
             password = br.readLine().trim();
-            customer = userRepository.findCustomer(new Customer(id, password)); //id가 저장소에 있을시 비밀번호 입력
+            customer = userRepository.findCustomer(id); //id가 저장소에 있을시 비밀번호 입력
+            if(!(password.equals(customer.getPassword()))) {
+            	return null;
+            }
         } catch (Exception e) {
             System.out.println("올바른 형식으로 입력해주세요");  // 예외처리
         }
@@ -146,7 +149,7 @@ public class UserServiceimple implements UserService { // Userservice 구현
         } catch (Exception e) {
             System.out.println("똑바로 입력해주세요"); // 예외처리
         }
-        userRepository.updateUser();
+        userRepository.updateUser(customer);
         System.out.println("변경완료");
     }
 

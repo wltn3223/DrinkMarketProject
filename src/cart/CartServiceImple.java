@@ -189,7 +189,8 @@ public class CartServiceImple implements CartService {
 
         System.out.println("결제후 잔액:" + (customer.getMoney() - totalPrice));
         customer.setMoney(customer.getMoney() - totalPrice);
-        userRepository.updateUser();
+        cartList.clear();
+        userRepository.updateUser(customer);
         System.out.println("====================주문완료=========================");
 
 
@@ -199,10 +200,12 @@ public class CartServiceImple implements CartService {
     public void depositMoney(Customer customer) {
         System.out.println("충전 하실 금액을 입력하세요(단위:원)");
         try {
+        	Customer depositCustomer = customer;
             String money = br.readLine();
-            customer.depositMoney(Integer.parseInt(money));
-            System.out.println("충전이완료되었습니다.");
-            userRepository.updateUser();
+            System.out.println("충전 전 금액:"  + depositCustomer.getMoney());
+            depositCustomer.depositMoney(Integer.parseInt(money));
+            System.out.println("충전 후 금액:"  + depositCustomer.getMoney());
+            userRepository.updateUser(customer);
         } catch (Exception e) {
             System.out.println("올바른 형식으로 입력해주세요");
         }

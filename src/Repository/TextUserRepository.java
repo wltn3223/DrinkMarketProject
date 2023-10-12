@@ -28,6 +28,7 @@ public class TextUserRepository implements UserRepository {
             for (String data : info) {
                 bw.write(data + "\n");
             }
+            bw.flush();
             bw.close();
             fw.close();
 
@@ -68,15 +69,21 @@ public class TextUserRepository implements UserRepository {
     @Override
 	public void removeUser(Customer customer) {
     	userDic.remove(customer.getId());
-    	updateUser();
+    	updateTxtList();
     
-    	
-    	
-		
 	}
 
 	@Override
-	public void updateUser() { // 변경된내용 다시 txt파일에 저장(덮어씀)
+	public void updateUser(Customer customer) { 
+		Customer origin = userDic.get(customer.getId());
+		origin.setMoney(customer.getMoney());
+		updateTxtList();
+		
+		
+	}
+
+	public void updateTxtList() {	// 변경된내용 다시 txt파일에 저장(덮어씀)
+		
 		ArrayList<String> info = new ArrayList<>();
 		for(Customer data: userDic.values()) {
     		info.add(data.getId());
@@ -89,8 +96,6 @@ public class TextUserRepository implements UserRepository {
     	// save에서 파일내용을 알아서 싹지움
 		
 	}
-
-
 
 	@Override
 	public void printUserList() {
@@ -113,9 +118,9 @@ public class TextUserRepository implements UserRepository {
     }
 
     @Override
-    public Customer findCustomer(Customer customer) { // map에 Cutomer객체 존재시 return
-        if (userDic.containsValue(customer))
-            return userDic.get(customer.getId());
+    public Customer findCustomer(String id) { // map에 id  존재시 return
+        if (userDic.containsKey(id))
+            return userDic.get(id);
         else {
             return null;
         }

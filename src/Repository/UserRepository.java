@@ -13,9 +13,10 @@ public interface UserRepository {
     void removeUser(Customer customer);  // 회원탈퇴 txt파일에서 제거
     Boolean isId(String id);  // id존재확인
     String findpassword(String id); // id입력후 패스워드찾기
-    void updateUser(); // 회원정보 변경후 갱신
-    Customer findCustomer(Customer customer); // customer객체찾기
+    void updateUser(Customer customer); // 회원정보 변경후 갱신
+    Customer findCustomer(String id); // customer객체찾기
     void printUserList(); // 유저목록프린트
+    void updateTxtList();
 
 
 }
